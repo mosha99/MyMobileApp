@@ -1,0 +1,62 @@
+﻿@page "/game"
+
+@inject ISender sender
+
+@if (showList)
+{
+    <ListGame Games="games" OnAddClick="AddGame" OnDeleteClick="RemoveGame" OnEditClick="EditGame"></ListGame>
+}
+else
+{
+    <EditGame game="game" onSubmit="onChange"></EditGame>
+}
+
+
+@code {
+    bool showList = true;
+
+    List<Models.Game> Games { set; get; }
+
+    List<Models.Game> games => Games;
+
+    Models.Game game { set; get; }
+
+
+    protected override async Task OnInitializedAsync()
+    {  
+        await ReFetchGames();
+        await base.OnInitializedAsync();
+    }
+
+    public async Task onChange(SaveGameCommand command)
+    {
+        showList = true;
+
+        int id = await sender.Send(command);
+
+        await ReFetchGames();
+
+    }
+
+    public void AddGame()
+    {
+        showList = false;
+        game = new Models.Game();
+    }
+
+    public async Task RemoveGame(DeleteGameCommand deleteGameCommand)
+    {
+        await sender.Send(deleteGameCommand);
+        await ReFetchGames();
+    }
+
+    public void EditGame(Models.Game game)
+    {
+        showList = false;
+        this.game = game;
+    }
+    public async Task ReFetchGames()
+    {
+        Games = await sender.Send(new GetGamesCommand());
+    }
+}

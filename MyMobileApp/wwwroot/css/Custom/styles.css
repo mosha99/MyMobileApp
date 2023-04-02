@@ -1,0 +1,27 @@
+body {
+  /*background-color: #222222;*/
+}
+
+.navbar-toggler-icon {
+  color: red !important;
+}
+
+#menu {
+  font-size: 30px;
+}
+
+* {
+  direction: rtl;
+}
+
+table {
+  color: var(--bs-gray-400) !important;
+}
+
+* {
+  color: var(--bs-gray-400);
+}
+
+input {
+    color: black;
+}
