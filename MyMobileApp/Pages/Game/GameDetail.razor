@@ -1,0 +1,70 @@
+﻿@page "/GameDetail"
+
+@using CommandANDQuery;
+@using Models;
+@using CommandANDQuery.Games.Commands;
+
+@inherits CustomCumponnetnBase;
+@inject NavigationManager NavManager;
+
+
+@inject ISender sender;
+
+
+@if (showList)
+{
+    <ListGameDetail GameMembers="GameMembers" OnCountersClick="ExicuteCumand" OnAddClick="AddGameMember" OnDeleteClick="ExicuteCumand" OnEditClick="EditGameMember"></ListGameDetail>
+}
+else
+{
+    <EditGameDetaile gameMember="gameMember" onSubmit="ExicuteCumand"></EditGameDetaile>
+}
+
+@if (showMessage)
+{
+    <Message MessageInfo="messageInfo" counter="counter" onCloseClick="HideMessage" onResponse="MessageResponse"></Message>
+}
+
+@code {
+
+    bool showList = true;
+    List<Models.GameMember> GameMembers { set; get; }
+    Models.GameMember gameMember { set; get; }
+
+    public int gameId { get; set; }
+
+    public override ISender GetSender() => sender;
+
+    public override async Task AfterExicute<T>(CustomRequest<T> request)
+    {
+        showList = true;
+        await ReFetchGameMembers();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
+        gameId = int.Parse(uri.ToString().Split('=')[1]);
+
+        await ReFetchGameMembers();
+        await base.OnInitializedAsync();
+    }
+
+    void AddGameMember()
+    {
+        showList = false;
+        gameMember = new Models.GameMember() { GameId = gameId };
+    }
+
+    void EditGameMember(Models.GameMember gameMember)
+    {
+        showList = false;
+        this.gameMember = gameMember;
+    }
+
+    async Task ReFetchGameMembers()
+    {
+        GameMembers = await sender.Send(new GetGameMembersCommand(gameId));
+    }
+
+}

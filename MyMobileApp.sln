@@ -6,9 +6,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyMobileApp", "MyMobileApp\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resources", "Resurce\Resources.csproj", "{A59649FB-4018-48E2-9EC2-7FE5337388BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandANDQuery", "CommandANDQuery\CommandANDQuery.csproj", "{C5F85E22-4565-4CEE-A867-4AB8492A82DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandANDQuery", "CommandANDQuery\CommandANDQuery.csproj", "{C5F85E22-4565-4CEE-A867-4AB8492A82DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{7C8F6415-E19B-4ED3-AB94-71A4EA0BE5A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{7C8F6415-E19B-4ED3-AB94-71A4EA0BE5A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

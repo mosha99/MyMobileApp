@@ -19,6 +19,7 @@ public class AppDbContext : IAppDbContextBase
 
         Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
         var result = await Database.CreateTableAsync<Game>();
+        var result2 = await Database.CreateTableAsync<GameMember>();
     }
 
     public async Task<List<T>> GetItemsAsync<T>() where T : IModelBase, new()
@@ -33,13 +34,15 @@ public class AppDbContext : IAppDbContextBase
         return await Database.Table<T>().Where(i => i.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<int> SaveItemAsync<T>(T item) where T : IModelBase, new()
+    public async Task<(int, bool)> SaveItemAsync<T>(T item) where T : IModelBase, new()
     {
         await Init();
+
         if (item.Id != 0)
-            return await Database.UpdateAsync(item);
+            return new(await Database.UpdateAsync(item), false);
         else
-            return await Database.InsertAsync(item);
+
+            return new(await Database.InsertAsync(item), true);
     }
 
     public async Task<int> DeleteItemAsync<T>(T item) where T : new()

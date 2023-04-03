@@ -70,11 +70,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Member.
+        /// </summary>
+        public static string AddMember {
+            get {
+                return ResourceManager.GetString("AddMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount.
         /// </summary>
         public static string Amount {
             get {
                 return ResourceManager.GetString("Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
             }
         }
         
@@ -124,6 +142,87 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to game whit Name : &quot;{0}&quot; added.
+        /// </summary>
+        public static string GameAdded {
+            get {
+                return ResourceManager.GetString("GameAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to game whit Name : &quot;{0}&quot; deleted.
+        /// </summary>
+        public static string GameDeleted {
+            get {
+                return ResourceManager.GetString("GameDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to you want delete game whit Name : &quot;{0}&quot; .
+        /// </summary>
+        public static string GameDeleteQuestion {
+            get {
+                return ResourceManager.GetString("GameDeleteQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to game whit Name : &quot;{0}&quot; Edited.
+        /// </summary>
+        public static string GameEdited {
+            get {
+                return ResourceManager.GetString("GameEdited", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to game Member whit Name : &quot;{0}&quot; added.
+        /// </summary>
+        public static string GameMemberAdded {
+            get {
+                return ResourceManager.GetString("GameMemberAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to the win count of &quot;{0}&quot; changed.
+        /// </summary>
+        public static string GameMemberChangeWinCount {
+            get {
+                return ResourceManager.GetString("GameMemberChangeWinCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to game Member whit Name : &quot;{0}&quot; deleted.
+        /// </summary>
+        public static string GameMemberDeleted {
+            get {
+                return ResourceManager.GetString("GameMemberDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to you want delete game member whit Name : &quot;{0}&quot;.
+        /// </summary>
+        public static string GameMemberDeleteQuestion {
+            get {
+                return ResourceManager.GetString("GameMemberDeleteQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to game Member whit Name : &quot;{0}&quot; Edited.
+        /// </summary>
+        public static string GameMemberEdited {
+            get {
+                return ResourceManager.GetString("GameMemberEdited", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
@@ -138,6 +237,15 @@ namespace Resources {
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to no.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
             }
         }
         
@@ -210,6 +318,15 @@ namespace Resources {
         public static string WinCount {
             get {
                 return ResourceManager.GetString("WinCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

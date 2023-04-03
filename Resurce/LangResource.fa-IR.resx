@@ -118,10 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddGame" xml:space="preserve">
-    <value>AddGame</value>
+    <value>افزودن بازی</value>
+  </data>
+  <data name="AddMember" xml:space="preserve">
+    <value>افزودن بازیکن</value>
   </data>
   <data name="Amount" xml:space="preserve">
     <value>مبلغ</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>بازگشت</value>
   </data>
   <data name="BackDate" xml:space="preserve">
     <value>تاریخ بازگشت</value>
@@ -138,11 +144,41 @@
   <data name="Game" xml:space="preserve">
     <value>بازی</value>
   </data>
+  <data name="GameAdded" xml:space="preserve">
+    <value>بازی با نام {0} با موفقیت افزوده شد</value>
+  </data>
+  <data name="GameDeleted" xml:space="preserve">
+    <value>بازی با نام {0} با موفقیت حذف شد</value>
+  </data>
+  <data name="GameDeleteQuestion" xml:space="preserve">
+    <value>آیا میخواهید بازی با نام {0} را حذف کنید؟</value>
+  </data>
+  <data name="GameEdited" xml:space="preserve">
+    <value>بازی با نام {0} با موفقیت ویرایش شد</value>
+  </data>
+  <data name="GameMemberAdded" xml:space="preserve">
+    <value>بازیکن با نام {0} با موفقیت افزوده شد</value>
+  </data>
+  <data name="GameMemberChangeWinCount" xml:space="preserve">
+    <value>تعداد برد های بازیکن با نام {0} با موفقیت تغییر یافت</value>
+  </data>
+  <data name="GameMemberDeleted" xml:space="preserve">
+    <value>بازیکن با نام {0} با موفقیت حذف شد</value>
+  </data>
+  <data name="GameMemberDeleteQuestion" xml:space="preserve">
+    <value>آیا میخواهید بازیکن با نام {0} را حذف کنید؟</value>
+  </data>
+  <data name="GameMemberEdited" xml:space="preserve">
+    <value>بازیکن با نام {0} با موفقیت ویرایش شد</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>زبان</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>نام</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>نه</value>
   </data>
   <data name="ObjectName" xml:space="preserve">
     <value>وسیله</value>
@@ -160,12 +196,15 @@
     <value>تعداد دور</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Submit</value>
+    <value>ثبت</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>عنوان</value>
   </data>
   <data name="WinCount" xml:space="preserve">
     <value>بردها</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>بله</value>
   </data>
 </root>

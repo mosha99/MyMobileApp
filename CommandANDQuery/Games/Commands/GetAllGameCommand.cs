@@ -1,6 +1,6 @@
 ﻿global using MediatR;
 using Models;
 
-namespace CommandANDQuery.Commands;
+namespace CommandANDQuery.Games.Commands;
 
 public sealed record GetGamesCommand() : IRequest<List<Game>>;

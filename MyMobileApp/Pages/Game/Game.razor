@@ -1,62 +1,69 @@
 ﻿@page "/game"
+@using CommandANDQuery;
+@using CommandANDQuery.Games.Commands;
+
+@inherits CustomCumponnetnBase
 
 @inject ISender sender
 
+@inject NavigationManager NavigationManager
+
 @if (showList)
 {
-    <ListGame Games="games" OnAddClick="AddGame" OnDeleteClick="RemoveGame" OnEditClick="EditGame"></ListGame>
+    <ListGame Games="Games" OnManageClick="ManageGame" OnAddClick="AddGame" OnDeleteClick="ExicuteCumand" OnEditClick="EditGame"></ListGame>
 }
 else
 {
-    <EditGame game="game" onSubmit="onChange"></EditGame>
+    <EditGame game="game" onSubmit="ExicuteCumand"></EditGame>
 }
 
+@if (showMessage)
+{
+    <Message MessageInfo="messageInfo" counter="counter" onCloseClick="HideMessage" onResponse="MessageResponse"></Message>
+}
 
 @code {
+
     bool showList = true;
-
     List<Models.Game> Games { set; get; }
-
-    List<Models.Game> games => Games;
-
     Models.Game game { set; get; }
 
 
+    public override ISender GetSender() => sender;
+
+    public override async Task AfterExicute<T>(CustomRequest<T> request)
+    {
+        showList = true;
+        await ReFetchGames();
+    }
+
     protected override async Task OnInitializedAsync()
-    {  
+    {
         await ReFetchGames();
         await base.OnInitializedAsync();
     }
 
-    public async Task onChange(SaveGameCommand command)
+    void ManageGame(Models.Game game)
     {
-        showList = true;
-
-        int id = await sender.Send(command);
-
-        await ReFetchGames();
+        NavigationManager.NavigateTo($"GameDetail?id={game.Id}");
 
     }
 
-    public void AddGame()
+    void AddGame()
     {
         showList = false;
         game = new Models.Game();
     }
 
-    public async Task RemoveGame(DeleteGameCommand deleteGameCommand)
-    {
-        await sender.Send(deleteGameCommand);
-        await ReFetchGames();
-    }
-
-    public void EditGame(Models.Game game)
+    void EditGame(Models.Game game)
     {
         showList = false;
         this.game = game;
     }
-    public async Task ReFetchGames()
+
+    async Task ReFetchGames()
     {
         Games = await sender.Send(new GetGamesCommand());
     }
+
 }

@@ -13,13 +13,17 @@ public class GameRepository : IGameRepository
     {
         List<Game> games = await AppDbContext.GetItemsAsync<Game>();
 
+        foreach (var item in games)
+        {
+            item.TotalRunds = (await GetGameMembers(item.Id)).Sum(x => x.WinCount);
+        }
         return games;
     }
 
-    public async Task<int> SaveGame(Game game)
+    public async Task<(int, bool)> SaveGame(Game game)
     {
-        int Gameid = await AppDbContext.SaveItemAsync<Game>(game);
-        return Gameid;
+        var result = await AppDbContext.SaveItemAsync<Game>(game);
+        return result;
     }
     public async Task<bool> DeleteGame(int gameId)
     {
@@ -32,13 +36,55 @@ public class GameRepository : IGameRepository
 
         return true;
     }
+
+    public async Task<List<GameMember>> GetGameMembers(int gameId)
+    {
+        List<GameMember> games = await AppDbContext.GetItemsAsync<GameMember>();
+        games = games.Where(x => x.GameId == gameId).ToList();
+        return games;
+    }
+
+    public async Task<(int, bool)> SaveGameMember(GameMember game)
+    {
+        var result = await AppDbContext.SaveItemAsync<GameMember>(game);
+        return result;
+    }
+    public async Task<bool> DeleteGameMember(int gameMemberid)
+    {
+        GameMember gameMember = await AppDbContext.GetItemAsync<GameMember>(gameMemberid);
+
+        if (gameMember is not null)
+            await AppDbContext.DeleteItemAsync<GameMember>(gameMember);
+        else
+            return false;
+
+        return true;
+    }
+
+    public async Task<int> ChangeWinCountGameMember(int gameMemberId, int count)
+    {
+        List<GameMember> gameMembers = await AppDbContext.GetItemsAsync<GameMember>();
+
+        var gameMember = gameMembers.Single(x => x.Id == gameMemberId);
+
+        gameMember.WinCount += count;
+
+        await SaveGameMember(gameMember);
+
+        return gameMember.Id;
+    }
 }
 
 public interface IGameRepository
 {
     public Task<List<Game>> GetGames();
-    public Task<int> SaveGame(Game game);
+    public Task<(int id, bool isNew)> SaveGame(Game game);
     public Task<bool> DeleteGame(int gameId);
+
+    public Task<List<GameMember>> GetGameMembers(int gameId);
+    public Task<(int id, bool isNew)> SaveGameMember(GameMember gameMember);
+    public Task<bool> DeleteGameMember(int gameMemberId);
+    public Task<int> ChangeWinCountGameMember(int gameMemberId, int Count);
 
 }
 
