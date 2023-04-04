@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandANDQuery", "CommandA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{7C8F6415-E19B-4ED3-AB94-71A4EA0BE5A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Share", "Share\Share.csproj", "{FE389397-390D-4009-8069-7D94AF91C05B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{7C8F6415-E19B-4ED3-AB94-71A4EA0BE5A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C8F6415-E19B-4ED3-AB94-71A4EA0BE5A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C8F6415-E19B-4ED3-AB94-71A4EA0BE5A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE389397-390D-4009-8069-7D94AF91C05B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE389397-390D-4009-8069-7D94AF91C05B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE389397-390D-4009-8069-7D94AF91C05B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE389397-390D-4009-8069-7D94AF91C05B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

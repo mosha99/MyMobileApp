@@ -1,8 +1,27 @@
-﻿@inherits LayoutComponentBase
+﻿@using CommandANDQuery;
+@using MyMobileApp.Adapters;
+@using Share;
+@inherits LayoutComponentBase
 
 
 <NavMenu />
 
 @Body
 
+@if (MessageManager.showMessage)
+{
+    <Message MessageInfo="MessageManager.messageInfo" counter="MessageManager.counter" onCloseClick="MessageManager.HideMessage" onResponse="MessageManager.MessageResponse"></Message>
+}
+
+@code {
+
+    protected override void OnParametersSet()
+    {
+        MessageManager.mainLayout = new MainLayoutAdapter(this);
+        base.OnParametersSet();
+    }
+
+    public async Task _InvokeAsync(Action action) => await InvokeAsync(action);
+    public void _StateHasChanged() =>  StateHasChanged();
+}
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CommandANDQuery.Games.Commands
 {
-    public class SaveGameCommand : CustomRequest<int>
+    public class SaveGameCommand : IRequest<int>
     {
         public Game Game { get; set; }
         public SaveGameCommand(Game game)

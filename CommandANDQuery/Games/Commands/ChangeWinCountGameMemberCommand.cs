@@ -2,7 +2,7 @@
 
 namespace CommandANDQuery.Games.Commands;
 
-public class ChangeWinCountGameMemberCommand : CustomRequest<int>
+public class ChangeWinCountGameMemberCommand : IRequest<int>
 {
     public GameMember GameMember { get; set; }
     public int Count { get; set; }

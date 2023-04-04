@@ -6,78 +6,23 @@ namespace MyMobileApp.Shared;
 
 public abstract class CustomCumponnetnBase : ComponentBase
 {
-    static object monitor = new object();
-    public int counter = 20;
-    public bool? MessageResult = null;
-    public bool showMessage = false;
-    public MessageInfo messageInfo;
+    public async Task ExicuteCumand<T>(IRequest<T> request)
+    {
 
-    public void MessageResponse(bool response)
-    {
-        MessageResult = response;
-        HideMessage();
-    }
-    public void HideMessage()
-    {
-        this.InvokeAsync(() =>
+        Func<Task> action = async () =>
         {
-            showMessage = false;
-            this.StateHasChanged();
-        });
+            await GetSender().Send(request);
+            await AfterExicute();
+        };
+        await Exicuting(request, action);
+
     }
-    public async Task<bool> ShowMessage(MessageInfo massageInfo)
+    public virtual async Task Exicuting<T>(IRequest<T> request, Func<Task> exicute)
     {
-       Monitor.Enter(monitor);
-
-        try
-        {
-            this.messageInfo = massageInfo;
-
-            showMessage = true;
-
-            counter = massageInfo.Counter;
-
-            bool result = await Task.Run(Getesult);
-
-            MessageResult = null;
-
-            HideMessage();
-
-            return result;
-        }
-        finally
-        {
-            Monitor.Exit(monitor);
-        }
-
+        await exicute();
     }
-    public bool Getesult()
-    {
-        for (int i; counter >= 1; counter--)
-        {
-            if (MessageResult.HasValue)
-                return MessageResult.Value;
 
-            Thread.Sleep(TimeSpan.FromSeconds(1));
-
-            this.InvokeAsync(() =>
-            {
-                StateHasChanged();
-            });
-        }
-        return false;
-    }
-    public async Task ExicuteCumand<T>(CustomRequest<T> request)
-    {
-
-        request.ShowMessage = ShowMessage;
-
-        T Result = await GetSender().Send(request);
-
-        await AfterExicute(request);
-
-    }
-    public abstract Task AfterExicute<T>(CustomRequest<T> request);
     public abstract ISender GetSender();
+    public abstract Task AfterExicute();
 }
 

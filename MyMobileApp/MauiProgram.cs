@@ -25,14 +25,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<IAppDbContextBase, AppDbContext>();
 
         builder.Services.AddSingleton<IRepositoryManager, RepositoryManager>();
-        try
-        {
-            return builder.Build();
-        }
-        catch (Exception ex)
-        {
 
-            throw;
-        }
+        return builder.Build();
+
     }
 }

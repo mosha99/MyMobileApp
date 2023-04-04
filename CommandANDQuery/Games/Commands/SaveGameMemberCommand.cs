@@ -2,7 +2,7 @@
 
 namespace CommandANDQuery.Games.Commands
 {
-    public class SaveGameMemberCommand : CustomRequest<int>
+    public class SaveGameMemberCommand : IRequest<int>
     {
         public GameMember GameMember { get; set; }
         public SaveGameMemberCommand(GameMember gameMember)

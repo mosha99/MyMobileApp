@@ -20,11 +20,6 @@ else
     <EditGameDetaile gameMember="gameMember" onSubmit="ExicuteCumand"></EditGameDetaile>
 }
 
-@if (showMessage)
-{
-    <Message MessageInfo="messageInfo" counter="counter" onCloseClick="HideMessage" onResponse="MessageResponse"></Message>
-}
-
 @code {
 
     bool showList = true;
@@ -35,7 +30,7 @@ else
 
     public override ISender GetSender() => sender;
 
-    public override async Task AfterExicute<T>(CustomRequest<T> request)
+    public override async Task AfterExicute()
     {
         showList = true;
         await ReFetchGameMembers();
