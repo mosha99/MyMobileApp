@@ -20,6 +20,8 @@ public class AppDbContext : IAppDbContextBase
         Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
         var result = await Database.CreateTableAsync<Game>();
         var result2 = await Database.CreateTableAsync<GameMember>();
+        var result3 = await Database.CreateTableAsync<Person>();
+        var result4 = await Database.CreateTableAsync<TransAction>();
     }
 
     public async Task<List<T>> GetItemsAsync<T>() where T : IModelBase, new()

@@ -195,6 +195,9 @@
   <data name="Reminders" xml:space="preserve">
     <value>Reminders</value>
   </data>
+  <data name="RequierdName" xml:space="preserve">
+    <value>Name is Requierd</value>
+  </data>
   <data name="Rounds" xml:space="preserve">
     <value>Rounds</value>
   </data>

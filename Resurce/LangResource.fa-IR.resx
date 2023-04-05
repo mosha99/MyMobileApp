@@ -195,6 +195,9 @@
   <data name="Reminders" xml:space="preserve">
     <value>یادآوری ها</value>
   </data>
+  <data name="RequierdName" xml:space="preserve">
+    <value>نام اجباری است</value>
+  </data>
   <data name="Rounds" xml:space="preserve">
     <value>تعداد دور</value>
   </data>

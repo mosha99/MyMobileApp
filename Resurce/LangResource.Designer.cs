@@ -295,6 +295,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name is Requierd.
+        /// </summary>
+        public static string RequierdName {
+            get {
+                return ResourceManager.GetString("RequierdName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rounds.
         /// </summary>
         public static string Rounds {
