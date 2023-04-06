@@ -92,20 +92,24 @@ public interface IGameRepository
 public interface IRepositoryManager
 {
     public IGameRepository GameRepository { get; }
+    public IPersonRepository PersonRepository { get; }
 }
 
 public class RepositoryManager : IRepositoryManager
 {
     private IAppDbContextBase AppDbContext { set; get; }
     private Lazy<IGameRepository> _GameRepository { set; get; }
+    private Lazy<IPersonRepository> _PersonRepository { set; get; }
 
 
     public RepositoryManager(IAppDbContextBase appDbContext)
     {
         AppDbContext = appDbContext;
         _GameRepository = new Lazy<IGameRepository>(() => new GameRepository(AppDbContext));
+        _PersonRepository = new Lazy<IPersonRepository>(() => new PersonRepository(AppDbContext));
     }
 
     public IGameRepository GameRepository => _GameRepository.Value;
+    public IPersonRepository PersonRepository => _PersonRepository.Value;
 
 }

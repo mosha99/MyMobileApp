@@ -1,3 +1,5 @@
-﻿namespace CommandANDQuery.Financial.Commands;
+﻿using Share;
 
-public sealed record DeleteTransActionCommand(int id);
+namespace CommandANDQuery.Financial.Commands;
+
+public sealed record DeleteTransActionCommand(int id): IRequest<CustomResponse>;

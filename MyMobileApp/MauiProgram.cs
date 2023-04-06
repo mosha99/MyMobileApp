@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components.WebView.Maui;
 using DAL;
 using DAL.Repository;
+using CommandANDQuery.Financial.Validators;
+using MediatR;
+using System.Reflection;
+using FluentValidation;
 
 namespace MyMobileApp;
 
@@ -26,7 +30,8 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<IRepositoryManager, RepositoryManager>();
 
-        return builder.Build();
+        builder.Services.AddValidatorsFromAssembly(CommandANDQuery.AssemblyGetter.assembly);
 
+        return builder.Build();
     }
 }

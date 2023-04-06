@@ -8,11 +8,9 @@
 
   <ItemGroup>
     <Folder Include="Financial\Handlers\" />
-    <Folder Include="Financial\Validators\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="11.5.1" />
     <PackageReference Include="MediatR" Version="12.0.1" />
   </ItemGroup>
 

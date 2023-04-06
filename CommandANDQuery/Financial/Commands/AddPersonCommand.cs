@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Share;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -7,4 +8,4 @@ using System.Threading.Tasks;
 
 namespace CommandANDQuery.Financial.Commands;
 
-public sealed record AddPersonCommand(string Name);
+public sealed record AddPersonCommand(string Name):IRequest<CustomResponse>;
