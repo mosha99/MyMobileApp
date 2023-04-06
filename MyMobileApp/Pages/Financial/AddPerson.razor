@@ -1,0 +1,88 @@
+﻿@using CommandANDQuery.Financial.Commands;
+@using Share;
+@inject ISender Sender ;
+
+
+    <a @onclick="back" class="btn btn-light" style="margin-top: 30px;margin-bottom:10px; margin-right: 7px;">@LangResource.Back</a>
+
+    <div class="d-flex flex-column" style="padding: 15px;">
+        <label class="form-label">@LangResource.Name</label>
+        <input type="text" @bind="personName" />
+    </div>
+
+    @foreach (var item in Errors)
+    {
+        <p>
+            <span>+@item.Key</span>
+            @foreach (var error in item.Value)
+            {
+                <span>&nbsp;-@error</span>
+            }
+        </p>
+    }
+
+    <div>
+        <div class="d-flex flex-column" style="padding: 0;">
+            <button @onclick="Submit" class="btn btn-light" type="button" style="margin-top: 21px;margin-right: 7px;">@LangResource.Submit</button>
+        </div>
+    </div>
+
+@code {
+    [Parameter]
+    public EventCallback<bool> closeChanged { set; get; }
+
+    [Parameter]
+    public bool close { set; get; }
+
+    [Parameter]
+    public int? PersonId { set; get; }
+
+    public Dictionary<string, IEnumerable<string>> Errors = new();
+
+    string personName;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (PersonId.HasValue)
+        {
+            var result = await Sender.Send(new GetPersonCommand(PersonId.Value));
+            if (result.ResponseType == ResponseType.Success)
+                personName = result.Result.Name;
+        }
+        await base.OnParametersSetAsync();
+    }
+    public async Task Submit()
+    {
+        IRequest<CustomResponse> request;
+
+        if (PersonId is not null)
+        {
+            request = new EditPersonCommand(personName, PersonId.Value);
+        }
+        else
+        {
+            request = new AddPersonCommand(personName);
+        }
+
+        CustomResponse response = await Sender.Send(request);
+
+        if (response.ResponseType == ResponseType.Success)
+        {
+            await back();
+        }
+        else
+        {
+            Errors = response.ValidationErrors;
+        }
+
+    }
+    async Task back()
+    {
+        close = true;
+        PersonId = null;
+        Errors = new();
+        await closeChanged.InvokeAsync(close);
+        this.StateHasChanged();
+
+    }
+}

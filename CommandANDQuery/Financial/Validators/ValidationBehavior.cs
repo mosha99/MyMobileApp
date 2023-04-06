@@ -21,27 +21,39 @@ public sealed class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<
         var context = new ValidationContext<TRequest>(request);
         var Errors = _validators.Select(x => x.Validate(context).Errors);
 
-
-        if (Errors.Any(x => x.Any()))
+        if (Errors is not null && Errors.Any(x => x.Any()))
         {
-            return new CustomResponse().SetError(Errors) as TResponse;
+            return GetResponse(new CustomResponse().SetError(Errors)) ;
         }
         else
         {
             try
             {
                 TResponse response = await next();
+
+                if (response.MessageInfo is not null)
+                    response.MessageInfo.Show();
+
                 return response;
             }
             catch (Exception ex)
             {
                 new ErrorMessage(ex.Message).Show();
 
-                return new CustomResponse().SetError()as TResponse;
+                return GetResponse(new CustomResponse().SetError());
 
             }
         }
 
     }
 
+    TResponse GetResponse(CustomResponse response)
+    {
+        if(response is TResponse res)
+        {
+            return res;
+        }
+
+        throw new Exception();
+    }
 }

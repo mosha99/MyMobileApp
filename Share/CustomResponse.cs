@@ -29,7 +29,7 @@ public class CustomResponse
 {
     public Dictionary<string, IEnumerable<string>> ValidationErrors { get; set; }
     public ResponseType ResponseType { get; set; }
-    public MessageInfo MessageInfo { get; set; }
+    public MessageInfo? MessageInfo { get; set; }
     public CustomResponse Success()
     {
         ResponseType = ResponseType.Success;

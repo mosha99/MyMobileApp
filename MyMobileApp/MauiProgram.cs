@@ -32,6 +32,8 @@ public static class MauiProgram
 
         builder.Services.AddValidatorsFromAssembly(CommandANDQuery.AssemblyGetter.assembly);
 
+        builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
         return builder.Build();
     }
 }

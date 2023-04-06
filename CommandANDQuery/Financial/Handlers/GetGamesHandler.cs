@@ -7,16 +7,15 @@ using Share.Messages;
 
 namespace CommandANDQuery.Financial.Handlers;
 
-public class GetPersonHandler : IRequestHandler<GetPersonCommand, CustomResponse<List<Person>>>
+public class GetPepoleHandler : IRequestHandler<GetPepoleCommand, CustomResponse<List<Person>>>
 {
     public IRepositoryManager RepositoryManager { get; set; }
 
-    public GetPersonHandler(IRepositoryManager repositoryManager)
+    public GetPepoleHandler(IRepositoryManager repositoryManager)
     {
         RepositoryManager = repositoryManager;
     }
-
-    public async Task<CustomResponse<List<Person>>> Handle(GetPersonCommand request, CancellationToken cancellationToken)
+    public async Task<CustomResponse<List<Person>>> Handle(GetPepoleCommand request, CancellationToken cancellationToken)
     {
 
         List<Person> person = await RepositoryManager.PersonRepository.GetPeople();
@@ -25,6 +24,26 @@ public class GetPersonHandler : IRequestHandler<GetPersonCommand, CustomResponse
 
         return response;
     }
+
+}
+public class GetPersonHandler : IRequestHandler<GetPersonCommand, CustomResponse<Person>>
+{
+    public IRepositoryManager RepositoryManager { get; set; }
+
+    public GetPersonHandler(IRepositoryManager repositoryManager)
+    {
+        RepositoryManager = repositoryManager;
+    }
+    public async Task<CustomResponse<Person>> Handle(GetPersonCommand request, CancellationToken cancellationToken)
+    {
+
+        Person person = await RepositoryManager.PersonRepository.GetPerson(request.id);
+
+        CustomResponse<Person> response = new CustomResponse<Person>().SetResult(person);
+
+        return response;
+    }
+
 }
 public class AddPersonHandler : IRequestHandler<AddPersonCommand, CustomResponse>
 {

@@ -1,5 +1,36 @@
-﻿<h3>Financial</h3>
+﻿@page "/Financial"
+@using CommandANDQuery;
+@using CommandANDQuery.Games.Commands;
+
+
+@inject ISender sender
+
+@if (!List)
+{
+    <ListPerson closeChanged="SetEditOrList" AddorEditPerson="AddorEditPerson"></ListPerson>
+}
+else
+{
+    <AddPerson closeChanged="(b) =>SetEditOrList(!b)" PersonId="PersonId"></AddPerson>
+}
+
+
+
 
 @code {
 
+    int? PersonId;
+
+    bool List;
+
+    void SetEditOrList(bool item)
+    {
+        List = item;
+        this.StateHasChanged();
+    }
+
+    void AddorEditPerson(int? id)
+    {
+        PersonId = id;
+    }
 }
