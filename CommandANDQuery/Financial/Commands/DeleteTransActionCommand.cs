@@ -2,4 +2,4 @@
 
 namespace CommandANDQuery.Financial.Commands;
 
-public sealed record DeleteTransActionCommand(int id): IRequest<CustomResponse>;
+public sealed record DeleteTranCActionCommand(int id): IRequest<CustomResponse>;

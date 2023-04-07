@@ -1,0 +1,150 @@
+﻿@using CommandANDQuery;
+@using CommandANDQuery.Financial.Commands;
+@using CommandANDQuery.Games.Commands;
+@using Models;
+@using Share;
+
+
+@inject ISender sender
+@inject NavigationManager NavManager;
+
+
+<button @onclick="AddorEditAction" class="btn btn-light" type="button" style="margin-top: 20px;margin-right: 7px;">@LangResource.AddTranCAction</button>
+<button @onclick="Back" class="btn btn-light" type="button" style="margin-top: 20px;margin-right: 7px;">@LangResource.Back</button>
+
+
+<div class="table-responsive text-center" style="margin-top: 20px;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@LangResource.TrancactionType</th>
+                <th>@LangResource.Amount</th>
+                <th>@LangResource.TranCActionState</th>
+                <th>@LangResource.RemindDay</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in TranCActions)
+            {
+                if (item.Payed != (int)TranCActionState.Payed)
+                {
+                    style = "background-color:red";
+                }
+                else
+                {
+                    style = null;
+                }
+                <tr style="@style">
+
+                    <td>@GetTranCActionTypeLang((TranCActionType)item.Type)</td>
+                    <td>@item.Amount</td>
+                    <td>@GetTranCActionStateLang((TranCActionState)item.Payed)</td>
+                    <td>@(-1 * Math.Round((DateTime.Now -item.BackDate).TotalDays))</td>
+                    <td>
+                        <svg @onclick="()=>Payed(item)" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none">
+                            <path d="M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24262L10.2426 16.3137Z" fill="currentColor"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" fill="currentColor"></path>
+                        </svg>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    string style;
+    [Parameter]
+    public EventCallback<bool> closeChanged { set; get; }
+    [Parameter]
+    public bool close { set; get; }
+
+    [Parameter]
+    public EventCallback<int?> AddorPerson { set; get; }
+
+    [Parameter]
+    public int PersonId { set; get; }
+
+
+    List<TranCAction> TranCActions = new List<TranCAction>();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var result = await sender.Send(new GetTranCActionCommand(PersonId));
+
+        if (result.ResponseType == Share.ResponseType.Success)
+        {
+            TranCActions = result.Result.OrderByDescending(x=>x.Payed).ThenByDescending(x=>x.Amount).ToList();
+        }
+    }
+
+    async Task Payed(TranCAction item)
+    {
+        var result = await sender.Send(new PayedTranCActionCommand(item.Id));
+
+        if (result.ResponseType == Share.ResponseType.Success)
+        {
+            await OnParametersSetAsync();
+            this.StateHasChanged();
+        }
+    }
+
+
+    async Task RemoveTranCAction(TranCAction item)
+    {
+        await sender.Send(new DeleteTranCActionCommand(item.Id));
+        await OnParametersSetAsync();
+        this.StateHasChanged();
+    }
+
+    async Task AddorEditAction()
+    {
+        await back();
+    }
+
+
+    async Task back()
+    {
+        close = true;
+        await closeChanged.InvokeAsync(close);
+        this.StateHasChanged();
+    }
+    string GetTranCActionStateLang(TranCActionState state)
+    {
+        string result = "";
+        switch (state)
+        {
+            case TranCActionState.NotPayed:
+                result = LangResource.NotPayed;
+                break;
+            case TranCActionState.Payed:
+                result = LangResource.Payed;
+                break;
+
+        }
+        return result;
+
+    }
+
+    string GetTranCActionTypeLang(TranCActionType Type)
+    {
+        string result = "";
+        switch (Type)
+        {
+            case TranCActionType.lend:
+                result = LangResource.lend;
+                break;
+            case TranCActionType.Borrow:
+                result = LangResource.Borrow;
+                break;
+
+        }
+        return result;
+
+    }
+    void Back()
+    {
+        NavManager.NavigateTo("Financial");
+    }
+}

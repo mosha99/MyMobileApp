@@ -2,4 +2,4 @@
 
 namespace CommandANDQuery.Financial.Commands;
 
-public sealed record AddTransActionCommand(int PersonId, decimal Amount,TransActionType Type , int remainingDay) : IRequest<CustomResponse>;
+public sealed record AddTranCActionCommand(int PersonId, decimal Amount,TranCActionType Type , int remainingDay) : IRequest<CustomResponse>;

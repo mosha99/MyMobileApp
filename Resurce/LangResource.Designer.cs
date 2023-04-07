@@ -79,6 +79,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Person.
+        /// </summary>
+        public static string AddPerson {
+            get {
+                return ResourceManager.GetString("AddPerson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add TranCAction.
+        /// </summary>
+        public static string AddTranCAction {
+            get {
+                return ResourceManager.GetString("AddTranCAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount.
         /// </summary>
         public static string Amount {
@@ -106,6 +124,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Borrow.
+        /// </summary>
+        public static string Borrow {
+            get {
+                return ResourceManager.GetString("Borrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string Date {
@@ -120,6 +147,15 @@ namespace Resources {
         public static string Deleted {
             get {
                 return ResourceManager.GetString("Deleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ltr.
+        /// </summary>
+        public static string Direction {
+            get {
+                return ResourceManager.GetString("Direction", resourceCulture);
             }
         }
         
@@ -232,11 +268,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to you want delete persen whit Name : &quot;{0}&quot;.
+        /// </summary>
+        public static string GamePersonDeleteQuestion {
+            get {
+                return ResourceManager.GetString("GamePersonDeleteQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to lend.
+        /// </summary>
+        public static string lend {
+            get {
+                return ResourceManager.GetString("lend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} lenth must betwin {1} to {2} char .
+        /// </summary>
+        public static string LenthError {
+            get {
+                return ResourceManager.GetString("LenthError", resourceCulture);
             }
         }
         
@@ -250,11 +313,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to name &quot;{0}&quot;  Exist in database plese enter other name.
+        /// </summary>
+        public static string NameUniqError {
+            get {
+                return ResourceManager.GetString("NameUniqError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to no.
         /// </summary>
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NotPayed.
+        /// </summary>
+        public static string NotPayed {
+            get {
+                return ResourceManager.GetString("NotPayed", resourceCulture);
             }
         }
         
@@ -273,6 +354,24 @@ namespace Resources {
         public static string Objects {
             get {
                 return ResourceManager.GetString("Objects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payed.
+        /// </summary>
+        public static string Payed {
+            get {
+                return ResourceManager.GetString("Payed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Would you like {0} of {1}?.
+        /// </summary>
+        public static string PayedTranCActionQuestionMessage {
+            get {
+                return ResourceManager.GetString("PayedTranCActionQuestionMessage", resourceCulture);
             }
         }
         
@@ -336,6 +435,24 @@ namespace Resources {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trans Action State.
+        /// </summary>
+        public static string TranCActionState {
+            get {
+                return ResourceManager.GetString("TranCActionState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trancaction Type.
+        /// </summary>
+        public static string TrancactionType {
+            get {
+                return ResourceManager.GetString("TrancactionType", resourceCulture);
             }
         }
         

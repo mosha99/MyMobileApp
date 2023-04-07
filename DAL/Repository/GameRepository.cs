@@ -1,4 +1,7 @@
-﻿namespace DAL.Repository;
+﻿using System.Globalization;
+using System.Linq.Expressions;
+
+namespace DAL.Repository;
 
 public class GameRepository : IGameRepository
 {
@@ -73,43 +76,4 @@ public class GameRepository : IGameRepository
 
         return gameMember.Id;
     }
-}
-
-public interface IGameRepository
-{
-    public Task<List<Game>> GetGames();
-    public Task<(int id, bool isNew)> SaveGame(Game game);
-    public Task<bool> DeleteGame(int gameId);
-
-    public Task<List<GameMember>> GetGameMembers(int gameId);
-    public Task<(int id, bool isNew)> SaveGameMember(GameMember gameMember);
-    public Task<bool> DeleteGameMember(int gameMemberId);
-    public Task<int> ChangeWinCountGameMember(int gameMemberId, int Count);
-
-}
-
-
-public interface IRepositoryManager
-{
-    public IGameRepository GameRepository { get; }
-    public IPersonRepository PersonRepository { get; }
-}
-
-public class RepositoryManager : IRepositoryManager
-{
-    private IAppDbContextBase AppDbContext { set; get; }
-    private Lazy<IGameRepository> _GameRepository { set; get; }
-    private Lazy<IPersonRepository> _PersonRepository { set; get; }
-
-
-    public RepositoryManager(IAppDbContextBase appDbContext)
-    {
-        AppDbContext = appDbContext;
-        _GameRepository = new Lazy<IGameRepository>(() => new GameRepository(AppDbContext));
-        _PersonRepository = new Lazy<IPersonRepository>(() => new PersonRepository(AppDbContext));
-    }
-
-    public IGameRepository GameRepository => _GameRepository.Value;
-    public IPersonRepository PersonRepository => _PersonRepository.Value;
-
 }

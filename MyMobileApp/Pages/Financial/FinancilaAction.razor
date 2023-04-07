@@ -1,0 +1,53 @@
+﻿@page "/FinancilaAction"
+
+@using CommandANDQuery;
+@using CommandANDQuery.Financial.Commands;
+@using CommandANDQuery.Games.Commands;
+
+@inject ISender Sender ;
+@inject NavigationManager NavManager;
+
+<p style="text-align:center;margin-top:20px; margin-bottom:-20px">@PersonName</p>
+
+
+@if (!List)
+{
+    <FinancilaActionList PersonId="personId" closeChanged="SetEditOrList"></FinancilaActionList>
+}
+else
+{
+    <AddFinancilaAction PersonId="personId" closeChanged="(b) =>SetEditOrList(!b)"></AddFinancilaAction>
+}
+
+
+
+
+@code {
+    int personId;
+    string PersonName;
+
+    bool List;
+
+    protected override async void OnParametersSet()
+    {
+        var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
+
+        personId = int.Parse(uri.ToString().Split('=')[1]);
+
+        var result = await Sender.Send(new GetPersonCommand(personId));
+        if (result.ResponseType == Share.ResponseType.Success)
+        {
+            PersonName = result.Result.Name;
+            StateHasChanged();
+        }
+
+        base.OnParametersSet();
+    }
+
+    void SetEditOrList(bool item)
+    {
+        List = item;
+        this.StateHasChanged();
+    }
+
+}

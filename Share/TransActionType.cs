@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Share;
 
-namespace Share;
-
-public enum TransActionType
+public enum TranCActionType
 {
     Borrow = 1,
     lend = 2
 }
 
+public enum TranCActionState
+{ 
+    Payed = 1,
+    NotPayed = 2
+}

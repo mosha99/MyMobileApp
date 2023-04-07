@@ -123,6 +123,12 @@
   <data name="AddMember" xml:space="preserve">
     <value>افزودن بازیکن</value>
   </data>
+  <data name="AddPerson" xml:space="preserve">
+    <value>افزودن فرد</value>
+  </data>
+  <data name="AddTranCAction" xml:space="preserve">
+    <value>افزودن تراکنش</value>
+  </data>
   <data name="Amount" xml:space="preserve">
     <value>مبلغ</value>
   </data>
@@ -132,11 +138,17 @@
   <data name="BackDate" xml:space="preserve">
     <value>تاریخ بازگشت</value>
   </data>
+  <data name="Borrow" xml:space="preserve">
+    <value>قرض گرفتن</value>
+  </data>
   <data name="Date" xml:space="preserve">
     <value>تاریخ</value>
   </data>
   <data name="Deleted" xml:space="preserve">
     <value>آیتم مورد نظر با موفقیت حذف شد</value>
+  </data>
+  <data name="Direction" xml:space="preserve">
+    <value>rtl</value>
   </data>
   <data name="Event" xml:space="preserve">
     <value>رویداد</value>
@@ -177,17 +189,35 @@
   <data name="Language" xml:space="preserve">
     <value>زبان</value>
   </data>
+  <data name="lend" xml:space="preserve">
+    <value>قرض دادن</value>
+  </data>
+  <data name="LenthError" xml:space="preserve">
+    <value>{0} باید بین {1} تا {2} کارکتر باشد</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>نام</value>
   </data>
+  <data name="NameUniqError" xml:space="preserve">
+    <value>نام  "{0}" از قبل ثبت شده است</value>
+  </data>
   <data name="No" xml:space="preserve">
     <value>نه</value>
+  </data>
+  <data name="NotPayed" xml:space="preserve">
+    <value>پرداخت نشده</value>
   </data>
   <data name="ObjectName" xml:space="preserve">
     <value>وسیله</value>
   </data>
   <data name="Objects" xml:space="preserve">
     <value>وسایل</value>
+  </data>
+  <data name="Payed" xml:space="preserve">
+    <value>پرداخت شده</value>
+  </data>
+  <data name="PayedTranCActionQuestionMessage" xml:space="preserve">
+    <value>آیا مایل به پرداخت مبلغ {0} از {1} هستید؟</value>
   </data>
   <data name="RemindDay" xml:space="preserve">
     <value>روز باقی مانده</value>
@@ -210,10 +240,19 @@
   <data name="Title" xml:space="preserve">
     <value>عنوان</value>
   </data>
+  <data name="TrancactionType" xml:space="preserve">
+    <value>نوع تراکنش</value>
+  </data>
+  <data name="TranCActionState" xml:space="preserve">
+    <value>وضعیت</value>
+  </data>
   <data name="WinCount" xml:space="preserve">
     <value>بردها</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>بله</value>
+  </data>
+  <data name="GamePersonDeleteQuestion" xml:space="preserve">
+    <value>آیا میخواهید فرد با نام {0} را حذف کنید؟</value>
   </data>
 </root>

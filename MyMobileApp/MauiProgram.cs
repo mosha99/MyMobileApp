@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Components.WebView.Maui;
-using DAL;
+﻿using DAL;
 using DAL.Repository;
 using CommandANDQuery.Financial.Validators;
 using MediatR;
-using System.Reflection;
 using FluentValidation;
 
 namespace MyMobileApp;

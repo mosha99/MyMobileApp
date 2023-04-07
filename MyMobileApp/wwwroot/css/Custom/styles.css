@@ -10,10 +10,12 @@ body {
   font-size: 30px;
 }
 
-* {
-  direction: rtl;
+*:not(#parent) {
+   direction: inherit;
 }
-
+button{
+    margin :5px;
+}
 table {
   color: var(--bs-gray-400) !important;
 }

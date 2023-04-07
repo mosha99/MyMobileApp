@@ -3,10 +3,13 @@
 @using Share;
 @inherits LayoutComponentBase
 
+<div id="parent" style="direction:@LangResource.Direction">
 
 <NavMenu />
 
 @Body
+
+</div>
 
 @if (MessageManager.showMessage)
 {

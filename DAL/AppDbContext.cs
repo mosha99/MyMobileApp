@@ -1,5 +1,6 @@
 ﻿global using Models;
 using SQLite;
+using System.Linq.Expressions;
 
 namespace DAL;
 
@@ -21,7 +22,8 @@ public class AppDbContext : IAppDbContextBase
         var result = await Database.CreateTableAsync<Game>();
         var result2 = await Database.CreateTableAsync<GameMember>();
         var result3 = await Database.CreateTableAsync<Person>();
-        var result4 = await Database.CreateTableAsync<TransAction>();
+        var result4 = await Database.CreateTableAsync<TranCAction>();
+        var result5 = await Database.CreateTableAsync<SelectedCulture>();
     }
 
     public async Task<List<T>> GetItemsAsync<T>() where T : IModelBase, new()
@@ -52,4 +54,10 @@ public class AppDbContext : IAppDbContextBase
         await Init();
         return await Database.DeleteAsync(item);
     }
+    public async Task<List<T>> FindByCondition<T>(Expression<Func<T, bool>> expression) where T : new()
+    {
+        await Init();
+        return await Database.Table<T>().Where(expression).ToListAsync();
+    }
+
 }

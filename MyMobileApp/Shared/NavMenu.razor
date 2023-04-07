@@ -1,4 +1,7 @@
-﻿
+﻿@using Plugin.LocalNotification;
+@inject ISender Sender ;
+@inject NavigationManager uriHelper;
+
 <nav class="navbar navbar-light navbar-expand-lg navigation-clean" style="background: #222222;">
     <div class="container">
         <a class="navbar-brand" href="#" style="color: var(--bs-gray-400);">@Title</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1" style="border-style: none;">
@@ -8,13 +11,13 @@
                 <path d="M3 17.0645C2.44772 17.0645 2 17.5122 2 18.0645C2 18.6167 2.44772 19.0645 3 19.0645H21C21.5523 19.0645 22 18.6167 22 18.0645C22 17.5122 21.5523 17.0645 21 17.0645H3Z" fill="currentColor"></path>
             </svg><span class="visually-hidden">Toggle navigation</span>
         </button>
-        <div class="collapse navbar-collapse" id="navcol-1">
+        <div class="@cclass navbar-collapse" id="navcol-1">
             <ul class="navbar-nav ms-auto">
 
                 <li class="nav-item"><NavLink class="nav-link" @onclick="()=>SetTitle(LangResource.Reminders)" href="event">	@LangResource.Reminders </NavLink></li>
                 <li class="nav-item"><NavLink class="nav-link" @onclick="()=>SetTitle(LangResource.Financial)" href="Financial">@LangResource.Financial </NavLink></li>
                 <li class="nav-item"><NavLink class="nav-link" @onclick="()=>SetTitle(LangResource.Game		)" href="game">	    @LangResource.Game		</NavLink></li>
-                <li class="nav-item"><NavLink class="nav-link" @onclick="()=>SetTitle(LangResource.Objects	)" href="objects">  @LangResource.Objects	</NavLink></li>
+                @*<li class="nav-item"><NavLink class="nav-link" @onclick="()=>SetTitle(LangResource.Objects	)" href="objects">  @LangResource.Objects	</NavLink></li>*@
 
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">@LangResource.Language &nbsp;&nbsp;</a>
@@ -29,17 +32,38 @@
 </nav>
 
 @code {
-
+    string cclass ="collapse";
+    static bool reloaded = false;
     public static string Title = LangResource.Reminders;
 
-    void langSet(string culture)
+    protected override async Task OnParametersSetAsync()
     {
-        LangResource.Culture = new System.Globalization.CultureInfo(culture);
+        LangResource.Culture = await Sender.Send(new GetLangCommand());
         Title = LangResource.Reminders;
+
+        await base.OnParametersSetAsync();
+        if (!reloaded)
+        {
+            reloaded = true;
+            uriHelper.NavigateTo(uriHelper.Uri, forceLoad: true);
+        }
+    }
+
+    async Task langSet(string culture)
+    {
+        await Sender.Send(new SaveLangCommand(culture));
+
+        LangResource.Culture = await Sender.Send(new GetLangCommand());
+
+        Title = LangResource.Reminders;
+
+        uriHelper.NavigateTo(uriHelper.Uri, forceLoad: true);
+
     }
 
     void SetTitle(string title)
     {
         Title = title;
+        StateHasChanged();
     }
 }

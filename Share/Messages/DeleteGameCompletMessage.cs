@@ -1,10 +1,6 @@
 ﻿using CommandANDQuery;
 using Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Share.Messages;
 
@@ -36,4 +32,14 @@ public class DeleteGameMemberQuestionMessage : MessageInfo
     }
 
     public override string GetMessage() => string.Format(LangResource.GameMemberDeleteQuestion,Name);
+}
+public class DeletePersonQuestionMessage : MessageInfo
+{
+    string Name { get; set; }
+    public DeletePersonQuestionMessage(string name) : base(MessageType.Question, 10)
+    {
+        Name = name;
+    }
+
+    public override string GetMessage() => string.Format(LangResource.GamePersonDeleteQuestion, Name);
 }

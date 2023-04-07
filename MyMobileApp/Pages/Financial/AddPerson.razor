@@ -13,10 +13,10 @@
     @foreach (var item in Errors)
     {
         <p>
-            <span>+@item.Key</span>
             @foreach (var error in item.Value)
             {
-                <span>&nbsp;-@error</span>
+                <hr />
+            <span style="color:red">&nbsp;-&nbsp;&nbsp;@error</span>
             }
         </p>
     }
