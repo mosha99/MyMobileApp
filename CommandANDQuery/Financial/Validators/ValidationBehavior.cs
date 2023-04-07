@@ -2,12 +2,7 @@
 using FluentValidation.Results;
 using Share;
 using Share.Messages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+
 
 namespace CommandANDQuery.Financial.Validators;
 
